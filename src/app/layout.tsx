@@ -51,7 +51,7 @@ export default function RootLayout({
                 Build by{" "}
                 <Link
                   className="text-black"
-                  href="https://twitter.com/whyrohitwhy"
+                  href="https://twitter.com/ameyaidk"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
