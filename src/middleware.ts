@@ -9,7 +9,7 @@ const redis = new Redis({
 
 const ratelimit = new Ratelimit({
   redis: redis,
-  limiter: Ratelimit.slidingWindow(2, "7 d"),
+  limiter: Ratelimit.slidingWindow(500, "7 d"),
 });
 
 export default async function middleware(
@@ -22,12 +22,9 @@ export default async function middleware(
     ip
   );
 
-  console.log("ARE WE REDIS-IN?");
-  console.log("success", success);
-
   return success
     ? NextResponse.next()
-    : NextResponse.redirect(new URL("/blocked", request.url));
+    : NextResponse.json({ blocked: true });
 }
 
 export const config = {

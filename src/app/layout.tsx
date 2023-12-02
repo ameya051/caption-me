@@ -55,7 +55,7 @@ export default function RootLayout({
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  Rohit
+                  Ameya
                 </Link>
                 , with the help of{" "}
                 <Link className="text-black" href="https://nextjs.org/">
