@@ -9,7 +9,7 @@ const redis = new Redis({
 
 const ratelimit = new Ratelimit({
   redis: redis,
-  limiter: Ratelimit.slidingWindow(2, "7 d"),
+  limiter: Ratelimit.slidingWindow(5, "1 d"),
 });
 
 export default async function middleware(
@@ -28,5 +28,5 @@ export default async function middleware(
 }
 
 export const config = {
-  matcher: "/api/upload",
+  matcher: "/api/presigned",
 };

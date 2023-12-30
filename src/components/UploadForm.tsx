@@ -8,33 +8,46 @@ const UploadForm: FC = () => {
   const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
 
-  const upload = async (ev: ChangeEvent<HTMLInputElement>) => {
-    ev.preventDefault();
-    const files = ev.target.files;
+  const upload = async (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const files = e.target.files;
     try {
       if (files && files.length > 0 && files[0].size > 10485760) {
         console.log("Give file less than 10 mb");
       } else if (files && files.length > 0) {
         const file = files[0];
-        setIsUploading(true);
-        const data = new FormData();
-        data.set("file", file);
-
-        const res = await fetch("/api/upload", {
-          method: "POST",
-          body: data,
-        });
+        const res = await fetch(
+          `/api/presigned?fileSize=${file.size}&fileType=${file.type}`,
+          {
+            method: "PUT",
+          }
+        );
         //handle the error
         if (!res.ok) throw new Error(await res.text());
-
-        const responseJson = await res.json();
-        setIsUploading(false);
-
-        if (responseJson.blocked) router.push("/blocked");
+        const preSignedUrl = await res.json();
+        if (preSignedUrl.blocked) router.push("/blocked");
         else {
-          const { newName } = responseJson;
-          router.push("/" + newName);
+          setIsUploading(true);
+          const response = await fetch(preSignedUrl.url, {
+            method: "PUT",
+            headers: {
+              "Content-Type": file.type,
+            },
+            body: file,
+          });
+          if (!response.ok) throw new Error(await response.text());
+          else {
+            setIsUploading(false);
+            router.push("/" + preSignedUrl.fileName);
+          }
         }
+        // setIsUploading(false);
+
+        // if (responseJson.blocked) router.push("/blocked");
+        // else {
+        //   const { newName } = responseJson;
+        //   router.push("/" + newName);
+        // }
       }
     } catch (error) {
       console.log("error", error);

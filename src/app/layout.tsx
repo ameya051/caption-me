@@ -8,7 +8,7 @@ import { LinkedinIcon, LucideGithub } from "lucide-react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CaptionMe - Just add captions, no bullshit",
+  title: "CaptionMe - Just add captions",
   description:
     "Caption me is an app which let you add captions/ subtitles to you video and download it as well.",
 };
