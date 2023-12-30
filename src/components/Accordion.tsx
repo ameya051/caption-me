@@ -17,7 +17,7 @@ const Accordion: React.FC = () => {
         <div className="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000">
           All you need to do is upload a video of size not bigger than 10
           megabytes. After that, sit back and watch your video being
-          'captionified'!
+          &apos;captionified&apos;!
         </div>
       </div>
 
