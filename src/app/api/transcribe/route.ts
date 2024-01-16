@@ -5,15 +5,23 @@ import {
   TranscribeClient,
 } from "@aws-sdk/client-transcribe";
 
-function getClient(): TranscribeClient {
-  return new TranscribeClient({
-    region: process.env.BUCKET_REGION,
-    credentials: {
-      accessKeyId: process.env.ACCESS_KEY!,
-      secretAccessKey: process.env.SECRET_ACCESS_KEY!,
-    },
-  });
-}
+const transcribeClient = new TranscribeClient({
+  region: process.env.BUCKET_REGION,
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY!,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY!,
+  },
+});
+
+// function getClient(): TranscribeClient {
+//   return new TranscribeClient({
+//     region: process.env.BUCKET_REGION,
+//     credentials: {
+//       accessKeyId: process.env.ACCESS_KEY!,
+//       secretAccessKey: process.env.SECRET_ACCESS_KEY!,
+//     },
+//   });
+// }
 
 function createTranscriptionCommand(
   filename: string
@@ -30,13 +38,13 @@ function createTranscriptionCommand(
 }
 
 async function createTranscriptionJob(filename: string): Promise<any> {
-  const transcribeClient = getClient();
+  // const transcribeClient = getClient();
   const transcriptionCommand = createTranscriptionCommand(filename);
   return transcribeClient.send(transcriptionCommand);
 }
 
 async function getJob(filename: string): Promise<any> {
-  const transcribeClient = getClient();
+  // const transcribeClient = getClient();
   let jobStatusResult = null;
   try {
     const transcriptionJobStatusCommand = new GetTranscriptionJobCommand({

@@ -2,9 +2,9 @@ import React from "react";
 
 const Accordion: React.FC = () => {
   return (
-    <div className="m-2 space-y-2">
+    <div className="m-2 mt-8 space-y-2">
       <div
-        className="group flex flex-col gap-2 rounded-lg bg-bg-gradient-from/70 p-5 text-white"
+        className="group flex flex-col gap-2 rounded-lg bg-gray-900/70 p-5 text-white"
         tabIndex={1}
       >
         <div className="flex cursor-pointer items-center justify-between">
@@ -22,7 +22,7 @@ const Accordion: React.FC = () => {
       </div>
 
       <div
-        className="group flex flex-col gap-2 rounded-lg bg-bg-gradient-from/70 p-5 text-white"
+        className="group flex flex-col gap-2 rounded-lg bg-gray-900/70 p-5 text-white"
         tabIndex={2}
       >
         <div className="flex cursor-pointer items-center justify-between">
@@ -38,7 +38,7 @@ const Accordion: React.FC = () => {
       </div>
 
       <div
-        className="group flex flex-col gap-2 rounded-lg bg-bg-gradient-from/70 p-5 text-white"
+        className="group flex flex-col gap-2 rounded-lg bg-gray-900/70 p-5 text-white"
         tabIndex={3}
       >
         <div className="flex cursor-pointer items-center justify-between">
@@ -50,7 +50,7 @@ const Accordion: React.FC = () => {
         </div>
         <div className="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000">
           Absolutely not! Although you will be restricted to upload videos not
-          more than two times within a week from your device.
+          more than 10 times within a day from your device.
         </div>
       </div>
     </div>

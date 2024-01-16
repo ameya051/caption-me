@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={
           inter.className +
-          " bg-gradient-to-b from-bg-gradient-from to-bg-gradient-to min-h-screen text-white"
+          " bg-gray-900 min-h-screen text-white"
         }
       >
         <main className="p-4 max-w-2xl mx-auto">
@@ -50,7 +50,7 @@ export default function RootLayout({
               <h4>
                 Build by{" "}
                 <Link
-                  className="text-black"
+                  className="hover:underline"
                   href="https://twitter.com/ameyaidk"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -58,7 +58,7 @@ export default function RootLayout({
                   Ameya
                 </Link>
                 , with the help of{" "}
-                <Link className="text-black" href="https://nextjs.org/">
+                <Link className="hover:underline" href="https://nextjs.org/">
                   Nextjs
                 </Link>
               </h4>

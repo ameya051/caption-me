@@ -2,18 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-
-input[type="color"]{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: transparent;
+input[type="color"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
 }
 input[type="color"]::-webkit-color-swatch {
-    border-radius: 5px;
-    border: 2px solid black;
+  border-radius: 5px;
+  border: 2px solid black;
 }
 input[type="color"]::-moz-color-swatch {
-    border-radius: 5px;
-    border: 2px solid black;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
 }

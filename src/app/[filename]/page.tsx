@@ -33,7 +33,7 @@ export default function FilePage({ params }: FilePageProps) {
       const transcription = response.data?.transcription;
       if (status === "IN_PROGRESS") {
         setIsTranscribing(true);
-        setTimeout(getTranscription, 3000);
+        setTimeout(getTranscription, 5000);
       } else {
         setIsTranscribing(false);
         setAwsTranscriptionItems(
