@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import crypto from "crypto";
+import { randomUUID } from 'crypto'
+
+export const runtime = 'edge'
 
 export async function PUT(request: NextRequest) {
   try {
@@ -25,9 +27,7 @@ export async function PUT(request: NextRequest) {
         secretAccessKey: process.env.SECRET_ACCESS_KEY!,
       },
     });
-    const generateFileName = (bytes = 32) =>
-      crypto.randomBytes(bytes).toString("hex");
-    const fileName = generateFileName();
+    const fileName = randomUUID();
     const putObjectCommand = new PutObjectCommand({
       Bucket: process.env.BUCKET_NAME!,
       Key: fileName,
