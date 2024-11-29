@@ -19,6 +19,7 @@
     "aws-crt": "^1.18.0",
     "axios": "^1.5.1",
     "body-parser": "^1.20.2",
+    "express": "^4.19.2",
     "file-loader": "^6.2.0",
     "formidable": "^3.5.1",
     "ioredis": "^5.3.2",

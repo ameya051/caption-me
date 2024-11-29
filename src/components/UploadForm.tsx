@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FC, useState } from "react";
-import axios from "axios";
 import UploadIcon from "@/components/UploadIcon";
 
 const UploadForm: FC = () => {

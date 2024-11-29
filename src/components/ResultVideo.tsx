@@ -14,7 +14,7 @@ export default function ResultVideo({
   filename: string;
   transcriptionItems: TScriptItems[];
 }) {
-  const videoUrl = "https://caption-me-bucket.s3.amazonaws.com/" + filename;
+  const videoUrl = "https://caption-me-s3-bucket.s3.ap-south-1.amazonaws.com/" + filename;
   const [loaded, setLoaded] = useState<boolean>(false);
   const [primaryColor, setPrimaryColor] = useState<string>("#FFFFFF");
   const [outlineColor, setOutlineColor] = useState<string>("#000000");
@@ -25,7 +25,7 @@ export default function ResultVideo({
   useEffect(() => {
     videoRef.current!.src = videoUrl;
     load();
-  }, []);
+  }, [videoUrl]);
 
   const load = async () => {
     const ffmpeg = ffmpegRef.current;
