@@ -20,27 +20,54 @@ export default function FilePage({ params }: FilePageProps) {
   const [awsTranscriptionItems, setAwsTranscriptionItems] = useState<
     TScriptItems[]
   >([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getTranscription();
+    let pollInterval: NodeJS.Timeout;
+    let mounted = true;
+
+    async function pollTranscription() {
+      try {
+        setIsFetchingInfo(true);
+        const response = await axios.get(
+          `http://localhost:8000/api/transcribe?filename=${filename}`
+        );
+        
+        if (!mounted) return;
+
+        const { status, transcription } = response.data;
+        
+        if (status === "IN_PROGRESS") {
+          setIsTranscribing(true);
+          pollInterval = setTimeout(pollTranscription, 3000);
+        } else {
+          setIsTranscribing(false);
+          setAwsTranscriptionItems(
+            clearTranscriptionItems(transcription?.results?.items)
+          );
+        }
+      } catch (err) {
+        if (!mounted) return;
+        setError(err instanceof Error ? err.message : 'An error occurred');
+        setIsTranscribing(false);
+      } finally {
+        if (mounted) {
+          setIsFetchingInfo(false);
+        }
+      }
+    }
+
+    pollTranscription();
+
+    // Cleanup function
+    return () => {
+      mounted = false;
+      clearTimeout(pollInterval);
+    };
   }, [filename]);
 
-  function getTranscription() {
-    setIsFetchingInfo(true);
-    axios.get(`/api/transcribe?filename=${filename}`).then((response) => {
-      setIsFetchingInfo(false);
-      const status = response.data?.status;
-      const transcription = response.data?.transcription;
-      if (status === "IN_PROGRESS") {
-        setIsTranscribing(true);
-        setTimeout(getTranscription, 5000);
-      } else {
-        setIsTranscribing(false);
-        setAwsTranscriptionItems(
-          clearTranscriptionItems(transcription?.results?.items)
-        );
-      }
-    });
+  if (error) {
+    return <div className="text-red-500">Error: {error}</div>;
   }
 
   if (isTranscribing) {

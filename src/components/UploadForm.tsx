@@ -16,7 +16,7 @@ const UploadForm: FC = () => {
       } else if (files && files.length > 0) {
         const file = files[0];
         const res = await fetch(
-          `/api/presigned?fileSize=${file.size}&fileType=${file.type}`,
+          `http://localhost:8000/api/presigned?fileSize=${file.size}&fileType=${file.type}`,
           {
             method: "PUT",
           }
@@ -35,18 +35,12 @@ const UploadForm: FC = () => {
             body: file,
           });
           if (!response.ok) throw new Error(await response.text());
-          else {
+          else {            
             setIsUploading(false);
             router.push("/" + preSignedUrl.fileName);
           }
         }
-        // setIsUploading(false);
-
-        // if (responseJson.blocked) router.push("/blocked");
-        // else {
-        //   const { newName } = responseJson;
-        //   router.push("/" + newName);
-        // }
+        setIsUploading(false);
       }
     } catch (error) {
       console.log("error", error);
