@@ -1,27 +1,67 @@
-# CaptionMe - Add captions to your videos with no hassle
+# CaptionMe - Just add captions
 
-### 'Captionify' your videos with just a click of a button!
+## Table Of Contents
 
-### Demostration Video: https://youtu.be/U7UlpaMF5jU?si=jBRm5LVp2Yg9Illc
+- [Table Of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Authors](#authors)
 
-### Live Site: https://caption-me-pearl.vercel.app/
+## About The Project
 
-## User Features
+All you need to do is upload a video of size not bigger than 10 megabytes. After that, sit back and watch your video being 'captionified'! This tool could come handy for social media content creators, youtubers, etc.
 
-* Developed a dynamic service using Next.js and TypeScript that seamlessly integrates AWS S3 for video storage,
-AWS Transcribe for automatic speech recognition, and Redis for effective API rate limiting based on user IP
-addresses.
-* Empowered users to effortlessly upload videos, receive automated captions, and edit them through a user-friendly
-interface. The service enhances accessibility by embedding the edited captions into the video, providing a
-streamlined experience.
-* Implemented robust security measures with Redis to enforce API rate limits, ensuring efficient usage and optimal
-performance while maintaining a scalable and responsive platform.
 
-## Technologies used
+https://github.com/user-attachments/assets/dbe2e2b8-6458-4407-9fa7-e69048856e71
 
-* Nextjs: For creating the frontend
-* TypeScript: For type safety
-* Redis: For rate limiting
-* AWS S3: To securely upload and store videos via presigned url
-* AWS Transcribe: For caption generation
-* ffmpeg: In order to embed captions in videos
+
+
+## Built With
+
+CaptionMe is built with:
+
+* [Next.js](https://nextjs.org): A React meta-framework
+* [Tailwind CSS](https://tailwindcss.com): An open source CSS framework
+* [TypeScript](https://www.typescriptlang.org): For type safety
+* [Express.js](https://expressjs.com): A backend framework based on Node.js
+* [AWS](https://aws.amazon.com): A leading cloud service
+* [Redis](https://redis.io): An in memory database
+
+## Getting Started
+
+### Prerequisites
+
+<a href="https://git-scm.com/downloads">Git</a> is a distributed version control system used for software development. It allows multiple developers to work on the same codebase simultaneously, keeping track of changes and managing versions. It also enables users to revert changes and collaborate more effectively.
+
+<a href="https://nodejs.org/en">Node.js</a> is a free, open-source, cross-platform JavaScript runtime environment that lets developers create servers, web apps, command line tools and scripts.
+
+### Installation
+
+Open up your terminal, and write the following commands to it -
+
+```bash
+git clone https://github.com/ameya051/caption-me
+```
+
+```bash
+cd caption-me
+```
+
+```bash
+npm install
+```
+
+```Rename .env.example to .env.local and fill the required fields```
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Authors
+
+- **Ameya Shrivastava** - [Ameya Shrivastava](https://github.com/ameya051) - *CaptionMe*
