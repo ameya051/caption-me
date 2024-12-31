@@ -6,7 +6,7 @@ import UploadIcon from "@/components/UploadIcon";
 const UploadForm: FC = () => {
   const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
-
+  
   const upload = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const files = e.target.files;
@@ -16,7 +16,7 @@ const UploadForm: FC = () => {
       } else if (files && files.length > 0) {
         const file = files[0];
         const res = await fetch(
-          `http://localhost:8000/api/presigned?fileSize=${file.size}&fileType=${file.type}`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/presigned?fileSize=${file.size}&fileType=${file.type}`,
           {
             method: "PUT",
           }
@@ -24,7 +24,7 @@ const UploadForm: FC = () => {
         //handle the error
         if (!res.ok) throw new Error(await res.text());
         const preSignedUrl = await res.json();
-        if (preSignedUrl.blocked) router.push("/blocked");
+        if (preSignedUrl.status===429) router.push("/blocked");
         else {
           setIsUploading(true);
           const response = await fetch(preSignedUrl.url, {

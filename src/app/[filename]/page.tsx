@@ -30,13 +30,13 @@ export default function FilePage({ params }: FilePageProps) {
       try {
         setIsFetchingInfo(true);
         const response = await axios.get(
-          `http://localhost:8000/api/transcribe?filename=${filename}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/transcribe?filename=${filename}`
         );
-        
+
         if (!mounted) return;
 
         const { status, transcription } = response.data;
-        
+
         if (status === "IN_PROGRESS") {
           setIsTranscribing(true);
           pollInterval = setTimeout(pollTranscription, 3000);
