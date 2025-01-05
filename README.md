@@ -12,7 +12,7 @@
 
 ## About The Project
 
-All you need to do is upload a video of size not bigger than 10 megabytes. After that, sit back and watch your video being 'captionified'! This tool could come handy for social media content creators, youtubers, etc.
+All you need to do is upload a video of size not bigger than 10 megabytes. After that, sit back and watch your video being 'captionified'! This tool could come handy for social media content creators, youtubers, etc. [Link the to backend repo](https://github.com/ameya051/caption-me-api)
 
 
 https://github.com/user-attachments/assets/dbe2e2b8-6458-4407-9fa7-e69048856e71
