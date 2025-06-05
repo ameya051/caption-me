@@ -1,20 +1,23 @@
-import Accordion from "@/components/Accordion";
-import DemoSection from "@/components/DemoSection";
-import PageHeaders from "@/components/PageHeaders";
-import UploadForm from "@/components/UploadForm";
+import CTASection from "@/components/CTASection";
+import FeaturesSection from "@/components/FeaturesSection";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import HowItWorksSection from "@/components/HowItWorksSection";
+import Navbar from "@/components/Navbar";
+import PricingSection from "@/components/PricingSection";
 
 export default function Home() {
   return (
-    <>
-      <PageHeaders
-        h1Text={"Add epic captions to your videos"}
-        h2Text={"Just upload your video and we will do the rest"}
-      />
-      <div className="text-center">
-        <UploadForm />
-      </div>
-      <DemoSection />
-      <Accordion />
-    </>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <HeroSection />
+        <FeaturesSection />
+        <HowItWorksSection />
+        <PricingSection />
+        <CTASection />
+      </main>
+      <Footer />
+    </div>
   );
 }
