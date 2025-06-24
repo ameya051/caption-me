@@ -67,15 +67,11 @@ const SignUp = () => {
   };
 
   const handleGoogleSignUp = () => {
-    toast.info("Google sign up", {
-      description: "Google authentication will be implemented soon.",
-    });
+    window.location.href= "http://localhost:8000/api/google";
   };
 
   const handleGitHubSignUp = () => {
-    toast.info("GitHub sign up", {
-      description: "GitHub authentication will be implemented soon.",
-    });
+    window.location.href= "http://localhost:8000/api/github";
   };
 
   return (

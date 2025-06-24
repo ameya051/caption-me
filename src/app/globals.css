@@ -60,6 +60,16 @@ input[type="color"]::-moz-color-swatch {
     --ring: 260 60% 55%;
 
     --radius: 0.5rem;
+
+    /* Sidebar colors for light mode */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 260 60% 55%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-ring: 260 60% 55%;
   }
 
   .dark {
@@ -90,6 +100,16 @@ input[type="color"]::-moz-color-swatch {
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 260 60% 55%;
+
+    /* Sidebar colors for dark mode */
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 260 60% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 260 60% 55%;
   }
 }
 

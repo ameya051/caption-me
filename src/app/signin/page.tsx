@@ -52,15 +52,12 @@ const SignIn = () => {
   };
 
   const handleGoogleSignIn = () => {
-    toast.info("Google sign in", {
-      description: "Google authentication will be implemented soon.",
-    });
+    // Redirect to the backend's Google OAuth endpoint
+    window.location.href = "http://localhost:8000/api/google";
   };
 
   const handleGitHubSignIn = () => {
-    toast.info("GitHub sign in", {
-      description: "GitHub authentication will be implemented soon.",
-    });
+    window.location.href = "http://localhost:8000/api/github";
   };
 
   return (
