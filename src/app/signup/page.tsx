@@ -1,45 +1,22 @@
 'use client';
-import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "@/components/ui/form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { ArrowRight, Eye, EyeOff } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from 'next/link';
 import GoogleIcon from "@/components/icons/GoogleIcon";
 import GitHubIcon from "@/components/icons/GithubIcon";
-
-const formSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z.string()
-    .min(8, { message: "Password must be at least 8 characters" })
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, { 
-      message: "Password must contain at least one uppercase letter, one lowercase letter, and one number" 
-    }),
-  confirmPassword: z.string(),
-  acceptTerms: z.boolean().refine((val) => val === true, {
-    message: "You must accept the terms and conditions",
-  }),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
-
-type FormData = z.infer<typeof formSchema>;
+import { PasswordInput } from "@/components/ui/password-input";
+import { useSignUp, signUpSchema, type SignUpFormData } from "@/hooks/useSignUp";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const SignUp = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
-  const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<SignUpFormData>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -48,22 +25,10 @@ const SignUp = () => {
     },
   });
 
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
-    
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      toast.success("Account created successfully!", {
-        description: "Welcome to CaptionMe!",
-      });
-      form.reset();
-    } catch (error) {
-      toast.error("Sign up failed", {
-        description: "Please try again later.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+  const signUpMutation = useSignUp();
+
+  const onSubmit = (data: SignUpFormData) => {
+    signUpMutation.mutate(data);
   };
 
   const handleGoogleSignUp = () => {
@@ -149,23 +114,10 @@ const SignUp = () => {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <div className="relative">
-                          <Input 
-                            type={showPassword ? "text" : "password"}
-                            placeholder="Create a password" 
-                            {...field} 
-                            className="h-12 pr-10"
-                          />
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="absolute right-0 top-0 h-12 w-10"
-                            onClick={() => setShowPassword(!showPassword)}
-                          >
-                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                          </Button>
-                        </div>
+                        <PasswordInput 
+                          placeholder="Create a password" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -179,23 +131,10 @@ const SignUp = () => {
                     <FormItem>
                       <FormLabel>Confirm Password</FormLabel>
                       <FormControl>
-                        <div className="relative">
-                          <Input 
-                            type={showConfirmPassword ? "text" : "password"}
-                            placeholder="Confirm your password" 
-                            {...field} 
-                            className="h-12 pr-10"
-                          />
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="absolute right-0 top-0 h-12 w-10"
-                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                          >
-                            {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                          </Button>
-                        </div>
+                        <PasswordInput 
+                          placeholder="Confirm your password" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -233,9 +172,9 @@ const SignUp = () => {
                 <Button 
                   type="submit" 
                   className="w-full h-12 btn-hover" 
-                  disabled={isSubmitting}
+                  disabled={signUpMutation.isPending}
                 >
-                  {isSubmitting ? "Creating account..." : (
+                  {signUpMutation.isPending ? "Creating account..." : (
                     <>
                       Create Account <ArrowRight className="ml-2 h-4 w-4" />
                     </>
