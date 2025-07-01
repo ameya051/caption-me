@@ -30,11 +30,11 @@ const SignIn = () => {
 
   const handleGoogleSignIn = () => {
     // Redirect to the backend's Google OAuth endpoint
-    window.location.href = "http://localhost:8000/api/auth/google";
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/google`;
   };
 
   const handleGitHubSignIn = () => {
-    window.location.href = "http://localhost:8000/api/auth/github";
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/github`;
   };
 
   return (

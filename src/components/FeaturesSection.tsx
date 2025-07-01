@@ -38,25 +38,27 @@ const features = [
 const FeaturesSection = () => {
   return (
     <section id="features" className="py-16 md:py-24 bg-secondary/30">
-      <div className="container px-4 md:px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold">Powerful Features</h2>
           <p className="text-muted-foreground text-lg">
             Everything you need to create professional captions for your videos
           </p>
         </div>
-        
+
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="bg-background rounded-xl p-6 shadow-sm border card-hover animate-fade-in dark:border-border"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className={cn("w-16 h-16 rounded-lg flex items-center justify-center mb-4 bg-gradient-to-br", feature.color)}>
-                {React.cloneElement(feature.icon, { className: "h-8 w-8 text-white" })}
+              <div className='flex gap-2 items-center mb-4'>
+              <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br", feature.color)}>
+                {React.cloneElement(feature.icon, { className: "h-4 w-4 text-white" })}
               </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-medium tracking-tight">{feature.title}</h3>
+              </div>
               <p className="text-muted-foreground">{feature.description}</p>
             </div>
           ))}

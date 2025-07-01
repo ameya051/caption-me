@@ -1,55 +1,17 @@
-
-import React from 'react';
+import React from "react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
   return (
-    <footer className="bg-secondary/30 py-12">
-      <div className="container px-4 md:px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 className="font-semibold text-lg mb-3">CaptionMe</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">About</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-lg mb-3">Product</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Features</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Pricing</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">API</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Integrations</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-lg mb-3">Resources</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Documentation</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Guides</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Support</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Webinars</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-lg mb-3">Legal</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Security</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Accessibility</a></li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="pt-8 border-t">
+    <footer className="bg-background py-12">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <div className=" w-full flex mt-4 items-center justify-center   ">
+        <h1 className="text-center text-5xl md:text-5xl lg:text-[10rem] font-bold bg-clip-text text-transparent bg-gradient-to-b from-purple-400 to-purple-700 dark:from-neutral-700 dark:to-neutral-900 select-none">
+          CaptionMe
+        </h1>
+      </div>
+        <div className="pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <a href="/" className="font-semibold text-xl">

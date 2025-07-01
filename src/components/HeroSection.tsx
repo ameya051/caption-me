@@ -2,16 +2,17 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Video } from "lucide-react";
 import Link from "next/link";
+import DemoSection from "./DemoSection";
 
 const HeroSection = () => {
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-24">
-      <div className="container px-4 md:px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl font-medium lg:text-6xl antialiased tracking-tighter animate-fade-in">
-              Add captions to videos with{" "}
-              <span className="gradient-text">AI</span> in seconds
+              One Upload. Perfect{" "}
+              <span className="gradient-text">Captions.</span> Done.
             </h1>
             <p
               className="max-w-[600px] text-muted-foreground text-lg md:text-xl animate-fade-in"
@@ -24,24 +25,21 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-4 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              <Link href={"/waitlist"}>
+              <Link href={"/signin"}>
                 <Button size="lg" className="btn-hover">
-                  Join Waitlist
+                  Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link href={"/waitlist"}>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="btn-hover"
-                >
+                <Button size="lg" variant="outline" className="btn-hover">
                   Schedule a Demo
                 </Button>
               </Link>
             </div>
           </div>
-          <div
+          <DemoSection/>
+          {/* <div
             className="relative lg:mt-0 animate-fade-in"
             style={{ animationDelay: "0.3s" }}
           >
@@ -88,7 +86,7 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="absolute -z-10 -inset-1 blur-xl opacity-50 bg-gradient-to-br from-purple-600 to-indigo-600 animate-pulse"></div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

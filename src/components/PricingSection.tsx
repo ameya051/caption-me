@@ -56,18 +56,18 @@ const pricing = [
 const PricingSection = () => {
   return (
     <section id="pricing" className="py-16 md:py-24 bg-secondary/30">
-      <div className="container px-4 md:px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold">Simple, Transparent Pricing</h2>
           <p className="text-muted-foreground text-lg">
             Choose the plan that&apos;s right for you
           </p>
         </div>
-        
+
         <div className="grid gap-8 md:grid-cols-3">
           {pricing.map((plan, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={cn(
                 "bg-background rounded-xl border shadow-sm overflow-hidden animate-fade-in",
                 plan.popular ? "relative border-primary shadow-md" : "",
@@ -88,7 +88,7 @@ const PricingSection = () => {
                   {plan.period && <span className="ml-1 text-muted-foreground">{plan.period}</span>}
                 </div>
                 <p className="mt-2 text-muted-foreground">{plan.description}</p>
-                
+
                 <ul className="mt-6 space-y-3">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex">
@@ -97,8 +97,8 @@ const PricingSection = () => {
                     </li>
                   ))}
                 </ul>
-                
-                <Button 
+
+                <Button
                   className={cn("w-full mt-8", plan.popular ? "" : "variant-outline")}
                   variant={plan.popular ? "default" : "outline"}
                 >

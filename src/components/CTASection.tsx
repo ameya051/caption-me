@@ -6,7 +6,7 @@ import Link from "next/link";
 const CTASection = () => {
   return (
     <section className="py-16 md:py-24">
-      <div className="container px-4 md:px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-3xl overflow-hidden shadow-xl">
           <div className="relative px-6 py-12 md:py-16 md:px-12 text-center md:text-left">
             <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -19,12 +19,12 @@ const CTASection = () => {
                   their videos more accessible and engaging.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href={"/waitlist"}>
+                  <Link href={"/signin"}>
                     <Button
                       size="lg"
                       className="bg-white text-primary hover:bg-purple-50 btn-hover"
                     >
-                      Join Waitlist
+                      Get Started
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
@@ -32,7 +32,7 @@ const CTASection = () => {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="dark:text-white border-white hover:bg-white/10 btn-hover"
+                      className="text-white border-white hover:bg-white/10 btn-hover"
                     >
                       Schedule a Demo
                     </Button>
