@@ -30,11 +30,11 @@ const SignIn = () => {
 
   const handleGoogleSignIn = () => {
     // Redirect to the backend's Google OAuth endpoint
-    window.location.href = "http://localhost:8000/api/google";
+    window.location.href = "http://localhost:8000/api/auth/google";
   };
 
   const handleGitHubSignIn = () => {
-    window.location.href = "http://localhost:8000/api/github";
+    window.location.href = "http://localhost:8000/api/auth/github";
   };
 
   return (
@@ -61,10 +61,10 @@ const SignIn = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input 
+                        <Input
                           type="email"
-                          placeholder="Enter your email" 
-                          {...field} 
+                          placeholder="Enter your email"
+                          {...field}
                           className="h-12"
                         />
                       </FormControl>
@@ -72,7 +72,7 @@ const SignIn = () => {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="password"
@@ -80,19 +80,19 @@ const SignIn = () => {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <PasswordInput 
-                          placeholder="Enter your password" 
-                          {...field} 
+                        <PasswordInput
+                          placeholder="Enter your password"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
-                <Button 
-                  type="submit" 
-                  className="w-full h-12 btn-hover" 
+
+                <Button
+                  type="submit"
+                  className="w-full h-12 btn-hover"
                   disabled={signInMutation.isPending}
                 >
                   {signInMutation.isPending ? "Signing in..." : (
@@ -103,7 +103,7 @@ const SignIn = () => {
                 </Button>
               </form>
             </Form>
-            
+
             <div className="mt-6">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
@@ -113,20 +113,20 @@ const SignIn = () => {
                   <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
                 </div>
               </div>
-              
+
               <div className="mt-6 grid grid-cols-2 gap-3">
-                <Button 
-                  variant="outline" 
-                  className="w-full h-12" 
+                <Button
+                  variant="outline"
+                  className="w-full h-12"
                   onClick={handleGoogleSignIn}
                   type="button"
                 >
                   <GoogleIcon className="mr-2 h-4 w-4" />
                   Google
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="w-full h-12" 
+                <Button
+                  variant="outline"
+                  className="w-full h-12"
                   onClick={handleGitHubSignIn}
                   type="button"
                 >
@@ -135,7 +135,7 @@ const SignIn = () => {
                 </Button>
               </div>
             </div>
-            
+
             <div className="mt-6 text-center">
               <p className="text-sm text-muted-foreground">
                 Don&apos;t have an account?{' '}
