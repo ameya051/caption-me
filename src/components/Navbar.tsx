@@ -91,8 +91,13 @@ const Navbar = () => {
             {/* <Button variant="ghost" className="hidden md:inline-flex">
               Log in
             </Button> */}
-            <Link href={"/waitlist"}>
-              <Button className="btn-hover">Join Waitlist</Button>
+            <Link href="/signin">
+              <Button variant="ghost" className="hidden md:inline-flex">
+                Log in
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button className="btn-hover">Sign Up</Button>
             </Link>
           </div>
         </div>

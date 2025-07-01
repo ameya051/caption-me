@@ -9,13 +9,13 @@ const HeroSection = () => {
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter animate-fade-in">
+            <h1 className="text-4xl md:text-5xl font-medium lg:text-6xl antialiased tracking-tighter animate-fade-in">
               Add captions to videos with{" "}
               <span className="gradient-text">AI</span> in seconds
             </h1>
             <p
               className="max-w-[600px] text-muted-foreground text-lg md:text-xl animate-fade-in"
-              style={{ animationDelay: "0.1s" }}
+              style={{ animationDelay: "0.3s" }}
             >
               Upload your video and our AI will automatically generate accurate
               captions. Save time and make your content accessible to everyone.
