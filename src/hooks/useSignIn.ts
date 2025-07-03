@@ -3,8 +3,10 @@ import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import api from '@/lib/axios';
+import axios from 'axios';
 
 export const signInSchema = z.object({
+
   email: z.string().email({ message: "Please enter a valid email address" }),
   password: z.string().min(6, { message: "Password must be at least 6 characters" }),
 });
@@ -16,10 +18,10 @@ export function useSignIn() {
 
   return useMutation({
     mutationFn: async (data: SignInFormData) => {
-      const response = await api.post('/api/auth/signin', data);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/signin`, data,{withCredentials: true});
       return response.data;
     },
-    onSuccess: (data) => {    
+    onSuccess: (data) => {
       toast.success("Sign in successful!", {
         description: `Welcome back${data.data.user.name ? `, ${data.data.user.name}` : ''}!`,
       });

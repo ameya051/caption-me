@@ -1,11 +1,17 @@
+'use client';
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
-import { DashboardSidebar } from "@/components/DashboardSidebar";
+import { DashboardSidebar } from "./_components/DashboardSidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Upload, FileVideo, FileText, Settings, Download } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Dashboard = () => {
+  const {user}= useAuthStore();
   return (
     <div className="min-h-screen w-full">
       <SidebarProvider>
@@ -35,10 +41,44 @@ const Dashboard = () => {
                 <TabsContent value="videos" className="space-y-4">
                   <div className="flex justify-between items-center">
                     <h2 className="text-2xl font-semibold">Your Videos</h2>
-                    <Button>
-                      <Upload className="mr-2 h-4 w-4" />
-                      Upload Video
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button>
+                          <Upload className="mr-2 h-4 w-4" />
+                          Upload Video
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogTitle>Upload Video</DialogTitle>
+                          <DialogDescription>
+                            Choose a video file to upload and generate subtitles.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                          <div className="grid gap-2">
+                            <Label htmlFor="video-file">Video File</Label>
+                            <Input
+                              id="video-file"
+                              type="file"
+                              accept="video/*"
+                              className="cursor-pointer"
+                            />
+                          </div>
+                          <div className="grid gap-2">
+                            <Label htmlFor="video-title">Title (Optional)</Label>
+                            <Input
+                              id="video-title"
+                              placeholder="Enter video title"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex justify-end gap-2">
+                          <Button variant="outline">Cancel</Button>
+                          <Button type="submit">Upload</Button>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     <Card>
