@@ -1,4 +1,3 @@
-'use client';
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "./_components/DashboardSidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -8,10 +7,8 @@ import { Upload, FileVideo, FileText, Settings, Download } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { useAuthStore } from "@/store/useAuthStore";
 
 const Dashboard = () => {
-  const {user}= useAuthStore();
   return (
     <div className="min-h-screen w-full">
       <SidebarProvider>
@@ -48,7 +45,7 @@ const Dashboard = () => {
                           Upload Video
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px]">
+                      <DialogContent className="sm:max-w-[425px] bg-inherit">
                         <DialogHeader>
                           <DialogTitle>Upload Video</DialogTitle>
                           <DialogDescription>

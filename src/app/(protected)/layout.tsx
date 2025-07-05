@@ -1,16 +1,7 @@
 "use client";
-
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/useAuthStore";
-
-const publicRoutes = [
-  "/signin",
-  "/signup",
-  "/waitlist",
-  "/",
-  "/forgot-password",
-];
 
 interface ProtectedRouteProviderProps {
   children: React.ReactNode;
@@ -27,7 +18,6 @@ const ProtectedRouteProvider = ({ children }: ProtectedRouteProviderProps) => {
   }, [fetchUser, hasAttemptedFetch]);
 
   useEffect(() => {
-    // Only redirect if we're not loading and have attempted to fetch user
     if (isLoading || !hasAttemptedFetch) return;
 
     if (!user) {

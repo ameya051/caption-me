@@ -9,7 +9,7 @@ import Link from 'next/link';
 import GoogleIcon from "@/components/icons/GoogleIcon";
 import GitHubIcon from "@/components/icons/GithubIcon";
 import { PasswordInput } from "@/components/ui/password-input";
-import { useSignIn, signInSchema, type SignInFormData } from "@/hooks/useSignIn";
+import { useSignIn, signInSchema, type SignInFormData } from "./_hooks/useSignIn";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 

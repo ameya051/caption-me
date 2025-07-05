@@ -1,4 +1,4 @@
-
+'use client';
 import React from 'react';
 import {
   Sidebar,
@@ -17,17 +17,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  FileVideo, 
-  FileText, 
-  Upload, 
-  Settings, 
-  Home, 
+import {
+  FileVideo,
+  FileText,
+  Upload,
+  Settings,
+  Home,
   Crown,
   User,
-  LogOut 
+  LogOut
 } from "lucide-react";
 import Link from 'next/link'
+import { useAuthStore } from '@/store/useAuthStore';
+import { useLogout } from '../_hooks/useLogout';
 
 const menuItems = [
   {
@@ -58,6 +60,12 @@ const menuItems = [
 ];
 
 export function DashboardSidebar() {
+  const {user}= useAuthStore();
+  const logoutMutation = useLogout();
+
+  function handleSignOut() {
+    logoutMutation.mutate();
+  }
   return (
     <Sidebar className="border-r">
       <SidebarHeader className="border-b">
@@ -69,7 +77,7 @@ export function DashboardSidebar() {
           </Link>
         </div>
       </SidebarHeader>
-      
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
@@ -103,8 +111,8 @@ export function DashboardSidebar() {
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm truncate">John Doe</p>
-                      <p className="text-xs text-muted-foreground truncate">john@example.com</p>
+                      <p className="font-medium text-sm truncate">Welcome Back!</p>
+                      <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
                     </div>
                   </div>
                   <div className="space-y-2">
@@ -113,8 +121,8 @@ export function DashboardSidebar() {
                       <span>15/50</span>
                     </div>
                     <div className="w-full bg-secondary rounded-full h-1.5">
-                      <div 
-                        className="bg-primary h-1.5 rounded-full" 
+                      <div
+                        className="bg-primary h-1.5 rounded-full"
                         style={{ width: '30%' }}
                       ></div>
                     </div>
@@ -144,14 +152,14 @@ export function DashboardSidebar() {
               </Button>
             </CardContent>
           </Card>
-          
+
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/">
+              <SidebarMenuButton onClick={() => handleSignOut()} asChild>
+                <div className="flex items-center gap-2 cursor-pointer">
                   <LogOut />
                   <span>Sign Out</span>
-                </Link>
+                </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

@@ -23,6 +23,8 @@ export const useAuthStore = create<AuthState>((set) => ({
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/me`,
         { withCredentials: true }
       )
+      console.log("Fetched user data:", data) // Log the fetched user data;
+
       set(() => ({ user: data.data, isLoading: false, hasAttemptedFetch: true }))
     } catch (error) {
       set(()=>({ user: undefined, isLoading: false, hasAttemptedFetch: true }))

@@ -25,7 +25,12 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
+    if(originalRequest.url === '/api/auth/refresh') {
+      // If the refresh token request fails, we don't want to retry it
+      window.location.href = '/signin';
+      return Promise.reject(error);
 
+    }
     if (error.response?.status !== 401 || originalRequest._retry) {
       return Promise.reject(error);
     }
@@ -47,7 +52,7 @@ api.interceptors.response.use(
       await api.post('/api/auth/refresh');
       processQueue();
       return api(originalRequest);
-    } catch (refreshError) {
+    } catch (refreshError: any) {
       processQueue(refreshError);
       return Promise.reject(refreshError);
     } finally {

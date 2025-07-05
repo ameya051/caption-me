@@ -2,7 +2,6 @@ import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import api from '@/lib/axios';
 import axios from 'axios';
 
 export const signInSchema = z.object({
@@ -18,12 +17,14 @@ export function useSignIn() {
 
   return useMutation({
     mutationFn: async (data: SignInFormData) => {
+      console.log("Signing in with data:", data);
+
       const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/signin`, data,{withCredentials: true});
       return response.data;
     },
     onSuccess: (data) => {
       toast.success("Sign in successful!", {
-        description: `Welcome back${data.data.user.name ? `, ${data.data.user.name}` : ''}!`,
+        description: `Welcome back!`,
       });
       router.push('/dashboard');
     },
