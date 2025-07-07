@@ -1,14 +1,20 @@
+'use client';
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "./_components/DashboardSidebar";
+import { UploadVideoDialog } from "./_components/UploadVideoDialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Upload, FileVideo, FileText, Settings, Download } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 
 const Dashboard = () => {
+  const handleUploadSuccess = () => {
+    console.log("Video uploaded successfully!");
+
+    // You can add logic here to refresh the videos list
+    // For example, refetch videos query or update local state
+  };
+
   return (
     <div className="min-h-screen w-full">
       <SidebarProvider>
@@ -28,54 +34,41 @@ const Dashboard = () => {
               </div>
 
               <Tabs defaultValue="videos" className="space-y-6">
-                <TabsList className="grid w-full max-w-md grid-cols-4">
-                  <TabsTrigger value="videos">Your Videos</TabsTrigger>
-                  <TabsTrigger value="subtitles">Your Subtitles</TabsTrigger>
-                  <TabsTrigger value="uploads">Uploads</TabsTrigger>
-                  <TabsTrigger value="settings">Settings</TabsTrigger>
+                <TabsList className="grid w-full max-w-2xl grid-cols-4 h-12 p-1 bg-muted/50">
+                  <TabsTrigger
+                    value="videos"
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  >
+                    <FileVideo className="h-4 w-4" />
+                    <span className="hidden sm:inline">Videos</span>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="subtitles"
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  >
+                    <FileText className="h-4 w-4" />
+                    <span className="hidden sm:inline">Subtitles</span>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="uploads"
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  >
+                    <Upload className="h-4 w-4" />
+                    <span className="hidden sm:inline">Uploads</span>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="settings"
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  >
+                    <Settings className="h-4 w-4" />
+                    <span className="hidden sm:inline">Settings</span>
+                  </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="videos" className="space-y-4">
                   <div className="flex justify-between items-center">
                     <h2 className="text-2xl font-semibold">Your Videos</h2>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button>
-                          <Upload className="mr-2 h-4 w-4" />
-                          Upload Video
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px] bg-inherit">
-                        <DialogHeader>
-                          <DialogTitle>Upload Video</DialogTitle>
-                          <DialogDescription>
-                            Choose a video file to upload and generate subtitles.
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                          <div className="grid gap-2">
-                            <Label htmlFor="video-file">Video File</Label>
-                            <Input
-                              id="video-file"
-                              type="file"
-                              accept="video/*"
-                              className="cursor-pointer"
-                            />
-                          </div>
-                          <div className="grid gap-2">
-                            <Label htmlFor="video-title">Title (Optional)</Label>
-                            <Input
-                              id="video-title"
-                              placeholder="Enter video title"
-                            />
-                          </div>
-                        </div>
-                        <div className="flex justify-end gap-2">
-                          <Button variant="outline">Cancel</Button>
-                          <Button type="submit">Upload</Button>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                    <UploadVideoDialog onUploadSuccess={handleUploadSuccess} />
                   </div>
                   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     <Card>

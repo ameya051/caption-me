@@ -11,22 +11,20 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-  FileVideo,
-  FileText,
-  Upload,
-  Settings,
   Home,
   Crown,
   User,
-  LogOut
+  LogOut,
+  Sun,
+  Moon
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import Link from 'next/link'
 import { useAuthStore } from '@/store/useAuthStore';
 import { useLogout } from '../_hooks/useLogout';
@@ -36,27 +34,7 @@ const menuItems = [
     title: "Dashboard",
     url: "/dashboard",
     icon: Home,
-  },
-  {
-    title: "Videos",
-    url: "#videos",
-    icon: FileVideo,
-  },
-  {
-    title: "Subtitles",
-    url: "#subtitles",
-    icon: FileText,
-  },
-  {
-    title: "Upload",
-    url: "#uploads",
-    icon: Upload,
-  },
-  {
-    title: "Settings",
-    url: "#settings",
-    icon: Settings,
-  },
+  }
 ];
 
 export function DashboardSidebar() {
@@ -66,6 +44,14 @@ export function DashboardSidebar() {
   function handleSignOut() {
     logoutMutation.mutate();
   }
+
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+  };
+
   return (
     <Sidebar className="border-r">
       <SidebarHeader className="border-b">
@@ -154,6 +140,18 @@ export function DashboardSidebar() {
           </Card>
 
           <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center gap-2 w-full"
+                  aria-label="Toggle theme"
+                >
+                  {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+                </button>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton onClick={() => handleSignOut()} asChild>
                 <div className="flex items-center gap-2 cursor-pointer">

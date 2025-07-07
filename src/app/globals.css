@@ -52,7 +52,7 @@ input[type="color"]::-moz-color-swatch {
     --chart-3: 24.8571 98.1308% 58.0392%;
     --chart-4: 217.0787 76.7241% 54.5098%;
     --chart-5: 0 0% 45.4902%;
-    --sidebar: 210 42.8571% 97.2549%;
+    --sidebar-background: 210 42.8571% 97.2549%;
     --sidebar-foreground: 0 0% 0%;
     --sidebar-primary: 0 0% 0%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -106,7 +106,7 @@ input[type="color"]::-moz-color-swatch {
     --chart-3: 0 93.5484% 81.7647%;
     --chart-4: 217.5484 87.5706% 65.2941%;
     --chart-5: 0 0% 62.7451%;
-    --sidebar: 240 4.3478% 9.0196%;
+    --sidebar-background: 240 4.3478% 9.0196%;
     --sidebar-foreground: 0 0% 94.1176%;
     --sidebar-primary: 257.6687 100% 68.0392%;
     --sidebar-primary-foreground: 0 0% 100%;
