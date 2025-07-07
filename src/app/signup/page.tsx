@@ -10,7 +10,7 @@ import Link from 'next/link';
 import GoogleIcon from "@/components/icons/GoogleIcon";
 import GitHubIcon from "@/components/icons/GithubIcon";
 import { PasswordInput } from "@/components/ui/password-input";
-import { useSignUp, signUpSchema, type SignUpFormData } from "@/hooks/useSignUp";
+import { useSignUp, signUpSchema, type SignUpFormData } from "./_hooks/useSignUp";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -32,11 +32,11 @@ const SignUp = () => {
   };
 
   const handleGoogleSignUp = () => {
-    window.location.href= "http://localhost:8000/api/google";
+    window.location.href= `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/google`;
   };
 
   const handleGitHubSignUp = () => {
-    window.location.href= "http://localhost:8000/api/github";
+    window.location.href= `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/github`;
   };
 
   return (
@@ -56,18 +56,18 @@ const SignUp = () => {
           <div className="bg-card rounded-xl border shadow-sm p-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <div className="mb-6">
               <div className="grid grid-cols-2 gap-3">
-                <Button 
-                  variant="outline" 
-                  className="w-full h-12" 
+                <Button
+                  variant="outline"
+                  className="w-full h-12"
                   onClick={handleGoogleSignUp}
                   type="button"
                 >
                   <GoogleIcon className="mr-2 h-4 w-4" />
                   Google
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="w-full h-12" 
+                <Button
+                  variant="outline"
+                  className="w-full h-12"
                   onClick={handleGitHubSignUp}
                   type="button"
                 >
@@ -75,7 +75,7 @@ const SignUp = () => {
                   GitHub
                 </Button>
               </div>
-              
+
               <div className="mt-6 relative">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t" />
@@ -95,10 +95,10 @@ const SignUp = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input 
+                        <Input
                           type="email"
-                          placeholder="Enter your email" 
-                          {...field} 
+                          placeholder="Enter your email"
+                          {...field}
                           className="h-12"
                         />
                       </FormControl>
@@ -106,7 +106,7 @@ const SignUp = () => {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="password"
@@ -114,16 +114,16 @@ const SignUp = () => {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <PasswordInput 
-                          placeholder="Create a password" 
-                          {...field} 
+                        <PasswordInput
+                          placeholder="Create a password"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="confirmPassword"
@@ -131,16 +131,16 @@ const SignUp = () => {
                     <FormItem>
                       <FormLabel>Confirm Password</FormLabel>
                       <FormControl>
-                        <PasswordInput 
-                          placeholder="Confirm your password" 
-                          {...field} 
+                        <PasswordInput
+                          placeholder="Confirm your password"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="acceptTerms"
@@ -168,10 +168,10 @@ const SignUp = () => {
                     </FormItem>
                   )}
                 />
-                
-                <Button 
-                  type="submit" 
-                  className="w-full h-12 btn-hover" 
+
+                <Button
+                  type="submit"
+                  className="w-full h-12 btn-hover"
                   disabled={signUpMutation.isPending}
                 >
                   {signUpMutation.isPending ? "Creating account..." : (
@@ -182,7 +182,7 @@ const SignUp = () => {
                 </Button>
               </form>
             </Form>
-            
+
             <div className="mt-6 text-center">
               <p className="text-sm text-muted-foreground">
                 Already have an account?{' '}
