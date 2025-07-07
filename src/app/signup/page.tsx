@@ -32,11 +32,11 @@ const SignUp = () => {
   };
 
   const handleGoogleSignUp = () => {
-    window.location.href= `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/google`;
+    window.location.href= `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/google`;
   };
 
   const handleGitHubSignUp = () => {
-    window.location.href= `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/github`;
+    window.location.href= `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/github`;
   };
 
   return (
