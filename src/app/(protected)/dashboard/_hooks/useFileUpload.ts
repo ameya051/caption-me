@@ -30,7 +30,15 @@ export const useFileUpload = ({ onSuccess, onError }: UseFileUploadOptions = {})
     mutationFn: async ({ file, title }: { file: File; title: string }) => {
       const presignedUrl = await getPresignedUrl(file, title);
       await uploadToS3(presignedUrl, file);
-      return { success: true };
+      const response = await api.post("/api/videos", {
+        title,
+        fileName: file.name,
+        fileType: file.type,
+      });
+      if (!response.data.success) {
+        throw new Error("Failed to save video metadata");
+      }
+      return response.data;
     },
     onSuccess: () => {
       toast.success("Video uploaded successfully!");

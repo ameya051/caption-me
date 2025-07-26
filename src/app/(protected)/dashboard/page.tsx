@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Upload, FileVideo, FileText, Settings, Download } from "lucide-react";
+import { VideoCard } from "@/app/(protected)/dashboard/_components/VideoCard";
 
 const Dashboard = () => {
   const handleUploadSuccess = () => {
@@ -71,34 +72,18 @@ const Dashboard = () => {
                     <UploadVideoDialog onUploadSuccess={handleUploadSuccess} />
                   </div>
                   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <Card>
-                      <CardHeader className="pb-2">
-                        <div className="flex items-center justify-between">
-                          <FileVideo className="h-8 w-8 text-blue-500" />
-                          <Button variant="ghost" size="sm">
-                            <Download className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <CardTitle className="text-lg">Sample Video 1</CardTitle>
-                        <CardDescription>Duration: 5:23 • Uploaded 2 days ago</CardDescription>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardHeader className="pb-2">
-                        <div className="flex items-center justify-between">
-                          <FileVideo className="h-8 w-8 text-blue-500" />
-                          <Button variant="ghost" size="sm">
-                            <Download className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <CardTitle className="text-lg">Sample Video 2</CardTitle>
-                        <CardDescription>Duration: 3:45 • Uploaded 1 week ago</CardDescription>
-                      </CardContent>
-                    </Card>
+                    <VideoCard
+                      title="Sample Video 1"
+                      duration="5:23"
+                      uploadedDate="2 days ago"
+                      onDownload={() => console.log("Downloading Sample Video 1")}
+                    />
+                    <VideoCard
+                      title="Sample Video 2"
+                      duration="3:45"
+                      uploadedDate="1 week ago"
+                      onDownload={() => console.log("Downloading Sample Video 2")}
+                    />
                   </div>
                 </TabsContent>
 
